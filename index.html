@@ -1,0 +1,1317 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Brizane du Pisanie — Product Designer (UI/UX Design)</title>
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23111110'/%3E%3Ctext x='16' y='22' font-family='Georgia%2C serif' font-size='18' font-style='italic' fill='%23F7F6F2' text-anchor='middle'%3EB%3C/text%3E%3C/svg%3E"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,300;1,9..144,300;1,9..144,400&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        --bg: #f9f8f5;
+        --bg-card: #ffffff;
+        --black: #0e0e0d;
+        --mid: #8a8880;
+        --subtle: #e8e6e1;
+        --border: rgba(14, 14, 13, 0.1);
+        --accent: #1a1a18;
+        --tag-bg: #eeecea;
+        --font-display: "Fraunces", Georgia, serif;
+        --font-body: "Inter", system-ui, sans-serif;
+        --radius: 12px;
+        --radius-sm: 6px;
+      }
+
+      html {
+        font-size: 16px;
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: var(--font-body);
+        background: var(--bg);
+        color: var(--black);
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      /* ── NAV ── */
+      nav {
+        position: fixed;
+        top: 1.25rem;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 100;
+        display: flex;
+        align-items: center;
+        gap: 2.5rem;
+        padding: 0.65rem 1.25rem 0.65rem 1.5rem;
+        background: rgba(255, 255, 255, 0.75);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 0.5px solid var(--border);
+        border-radius: 100px;
+        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.06);
+      }
+
+      .nav-logo {
+        font-family: var(--font-display);
+        font-size: 1rem;
+        font-style: italic;
+        font-weight: 300;
+        text-decoration: none;
+        color: var(--black);
+        white-space: nowrap;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 0.25rem;
+        list-style: none;
+      }
+
+      .nav-links a {
+        font-size: 0.8rem;
+        font-weight: 500;
+        color: var(--mid);
+        text-decoration: none;
+        padding: 0.4rem 0.85rem;
+        border-radius: 100px;
+        transition: all 0.18s;
+      }
+
+      .nav-links a:hover {
+        color: var(--black);
+        background: var(--tag-bg);
+      }
+
+      /* ── HERO ── */
+      .hero {
+        min-height: 90vh;
+        display: grid;
+        place-items: center;
+        padding: 8rem 4rem 5rem;
+        text-align: center;
+      }
+
+      .hero-inner {
+        max-width: 760px;
+      }
+
+      .hero-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.35rem 1rem;
+        background: var(--tag-bg);
+        border: 0.5px solid var(--border);
+        border-radius: 100px;
+        font-size: 0.75rem;
+        font-weight: 500;
+        color: var(--mid);
+        letter-spacing: 0.04em;
+        margin-bottom: 2rem;
+        opacity: 0;
+        animation: fadeUp 0.6s 0.1s forwards;
+      }
+
+      .hero-badge::before {
+        content: "";
+        width: 10px;
+        height: 10px;
+        background: #4ade80;
+        border-radius: 50%;
+        display: inline-block;
+      }
+
+      .hero-title {
+        font-family: var(--font-display);
+        font-size: clamp(3rem, 5vw, 5.5rem);
+        font-weight: 300;
+        line-height: 1.05;
+        letter-spacing: -0.02em;
+        margin-bottom: 1.5rem;
+        opacity: 0;
+        animation: fadeUp 0.6s 0.22s forwards;
+      }
+
+      .hero-title em {
+        font-style: italic;
+        color: var(--mid);
+      }
+
+      .hero-desc {
+        font-size: 1rem;
+        font-weight: 300;
+        color: var(--mid);
+        max-width: 100%;
+        margin: 0 auto 2.5rem;
+        line-height: 1.75;
+        opacity: 0;
+        animation: fadeUp 0.6s 0.34s forwards;
+      }
+
+      .hero-cta {
+        display: flex;
+        gap: 0.75rem;
+        justify-content: center;
+        flex-wrap: wrap;
+        opacity: 0;
+        animation: fadeUp 0.6s 0.46s forwards;
+      }
+
+      /* ── BUTTONS ── */
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.4rem;
+        padding: 0.7rem 1.4rem;
+        font-family: var(--font-body);
+        font-size: 0.85rem;
+        font-weight: 500;
+        text-decoration: none;
+        border-radius: 100px;
+        border: 0.5px solid transparent;
+        transition: all 0.2s;
+        cursor: pointer;
+      }
+
+      .btn-primary {
+        background: var(--black);
+        color: #fff;
+        border-color: var(--black);
+      }
+
+      .btn-primary:hover {
+        background: #2a2a28;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+        transform: translateY(-1px);
+      }
+
+      .btn-ghost {
+        background: var(--bg-card);
+        color: var(--black);
+        border-color: var(--border);
+      }
+
+      .btn-ghost:hover {
+        border-color: rgba(14, 14, 13, 0.25);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.07);
+        transform: translateY(-1px);
+      }
+
+      /* ── SECTION WRAPPER ── */
+      .section-wrap {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0 3rem;
+      }
+
+      /* ── CASE STUDIES ── */
+      .case-studies {
+        padding: 2rem 0 6rem;
+      }
+
+      .section-eyebrow {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        margin-bottom: 3rem;
+      }
+
+      .section-eyebrow-line {
+        flex: 1;
+        height: 0.5px;
+        background: var(--border);
+      }
+
+      .section-eyebrow-label {
+        font-size: 0.72rem;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--mid);
+        white-space: nowrap;
+      }
+
+      /* ── PROJECT CARD ── */
+      .project-card {
+        background: var(--bg-card);
+        border: 0.5px solid var(--border);
+        border-radius: var(--radius);
+        overflow: hidden;
+        margin-bottom: 1.5rem;
+        transition:
+          box-shadow 0.25s,
+          transform 0.25s;
+      }
+
+      .project-card-inner {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .project-card-meta {
+        padding: 3rem;
+        border-right: 0.5px solid var(--border);
+        display: flex;
+        flex-direction: column;
+      }
+
+      .project-num {
+        font-family: var(--font-display);
+        font-style: italic;
+        font-size: 0.85rem;
+        color: var(--mid);
+        margin-bottom: 1.5rem;
+      }
+
+      .project-tag {
+        display: inline-flex;
+        align-items: center;
+        padding: 0.25rem 0.7rem;
+        background: var(--tag-bg);
+        border-radius: 2px;
+        font-size: 0.7rem;
+        font-weight: 600;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        color: var(--mid);
+        margin-bottom: 1.25rem;
+        width: fit-content;
+      }
+
+      .project-title {
+        font-family: var(--font-display);
+        font-size: clamp(1.5rem, 2.5vw, 2rem);
+        font-weight: 300;
+        line-height: 1.15;
+        letter-spacing: -0.02em;
+        margin-bottom: 1rem;
+      }
+
+      .project-summary {
+        font-size: 0.88rem;
+        font-weight: 300;
+        color: var(--mid);
+        line-height: 1.75;
+        margin-bottom: 2rem;
+      }
+
+      .project-meta-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+        padding-top: 1.5rem;
+        border-top: 0.5px solid var(--border);
+      }
+
+      .meta-item-label {
+        font-size: 0.65rem;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--mid);
+        margin-bottom: 0.25rem;
+      }
+
+      .meta-item-value {
+        font-size: 0.82rem;
+        font-weight: 400;
+        color: var(--black);
+        line-height: 1.4;
+      }
+
+      /* ── PROJECT CONTENT ── */
+      .project-card-content {
+        padding: 3rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .insight-block {
+        border-radius: var(--radius-sm);
+        background: var(--bg);
+        padding: 1.25rem;
+      }
+
+      .insight-block-label {
+        font-size: 0.65rem;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--mid);
+        margin-bottom: 0.6rem;
+      }
+
+      .insight-block-text {
+        font-size: 0.875rem;
+        font-weight: 300;
+        color: var(--black);
+        line-height: 1.7;
+      }
+
+      .insight-block-text strong {
+        font-weight: 500;
+        display: block;
+        margin-top: 0.75rem;
+        margin-bottom: 0.25rem;
+      }
+
+      /* ── VIDEO ── */
+      .project-video {
+        width: 100%;
+        border-radius: var(--radius-sm);
+        display: block;
+        margin-top: 0.75rem;
+        /* background: var(--black); */
+        max-height: 220px;
+        object-fit: cover;
+      }
+
+      /* ── DOWNLOAD BLOCK ── */
+      .download-block {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        padding: 1.25rem;
+        background: #919191;
+        border-radius: var(--radius-sm);
+      }
+
+      .download-block-label {
+        font-size: 0.65rem;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.45);
+        margin-bottom: 0.3rem;
+      }
+
+      .download-block-title {
+        font-size: 0.875rem;
+        font-weight: 400;
+        color: #fff;
+      }
+
+      .btn-download {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        padding: 0.55rem 1.1rem;
+        font-family: var(--font-body);
+        font-size: 0.8rem;
+        font-weight: 500;
+        background: rgba(255, 255, 255, 0.12);
+        color: #fff;
+        border: 0.5px solid rgba(255, 255, 255, 0.2);
+        border-radius: 100px;
+        text-decoration: none;
+        white-space: nowrap;
+        transition: all 0.2s;
+        flex-shrink: 0;
+      }
+
+      .btn-download:hover {
+        background: rgba(255, 255, 255, 0.2);
+      }
+
+      /* ── ABOUT ── */
+      .about {
+        padding: 5rem 0 6rem;
+        border-top: 0.5px solid var(--border);
+      }
+
+      .about-grid {
+        display: grid;
+        grid-template-columns: 1fr 1.4fr;
+        gap: 5rem;
+        align-items: start;
+      }
+
+      .about-left {
+        position: sticky;
+        top: 7rem;
+      }
+
+      .about-heading {
+        font-family: var(--font-display);
+        font-size: clamp(2rem, 4vw, 3.2rem);
+        font-weight: 300;
+        line-height: 1.1;
+        letter-spacing: -0.02em;
+      }
+
+      .about-heading em {
+        font-style: italic;
+        color: var(--mid);
+      }
+
+      .about-body {
+        font-size: 0.9rem;
+        font-weight: 300;
+        color: var(--mid);
+        line-height: 1.85;
+        margin-bottom: 1.5rem;
+      }
+
+      .skills-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.4rem;
+        margin-bottom: 2.5rem;
+      }
+
+      .skill-tag {
+        padding: 0.3rem 0.75rem;
+        background: var(--bg-card);
+        border: 0.5px solid var(--border);
+        border-radius: 2px;
+        font-size: 0.75rem;
+        font-weight: 400;
+        color: var(--mid);
+        transition: all 0.18s;
+      }
+
+      .skill-tag:hover {
+        border-color: rgba(14, 14, 13, 0.25);
+        color: var(--black);
+      }
+
+      .contact-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+      }
+
+      /* ── FOOTER ── */
+      footer {
+        padding: 2rem 0;
+        border-top: 0.5px solid var(--border);
+      }
+
+      .footer-inner {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0 3rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      footer p {
+        font-size: 0.78rem;
+        color: var(--mid);
+        font-weight: 300;
+      }
+
+      /* ── ANIMATIONS ── */
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(16px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* ── CAROUSEL ── */
+      .carousel-wrap {
+        position: relative;
+      }
+
+      .carousel-track {
+        overflow: hidden;
+        border-radius: var(--radius);
+      }
+
+      .carousel-slides {
+        display: flex;
+        width: 100%;
+        align-items: stretch;
+        transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+        will-change: transform;
+      }
+
+      .carousel-slide {
+        flex: 0 0 100%;
+        width: 100%;
+        min-width: 0;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .carousel-slide .project-card {
+        flex: 1;
+        margin-bottom: 0;
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+        max-width: 100%;
+      }
+
+      .carousel-slide .project-card-inner {
+        flex: 1;
+        min-width: 0;
+      }
+
+      .carousel-controls {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1.25rem;
+        margin-top: 1.5rem;
+      }
+
+      .carousel-btn {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        border: 0.5px solid var(--border);
+        background: var(--bg-card);
+        color: var(--black);
+        font-size: 1.2rem;
+        line-height: 1;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s;
+      }
+
+      .carousel-btn:hover {
+        border-color: rgba(14, 14, 13, 0.25);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.07);
+        transform: translateY(-1px);
+      }
+
+      .carousel-btn:disabled {
+        opacity: 0.3;
+        cursor: not-allowed;
+        transform: none;
+        box-shadow: none;
+      }
+
+      .carousel-counter {
+        font-size: 0.82rem;
+        font-weight: 500;
+        color: var(--mid);
+        font-family: var(--font-display);
+        font-style: italic;
+        min-width: 2.5rem;
+        text-align: center;
+      }
+
+      .eyebrow-nav {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .eyebrow-btn {
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-size: 0.9rem;
+        color: var(--mid);
+        line-height: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: color 0.18s;
+      }
+
+      .eyebrow-btn:hover {
+        color: var(--black);
+      }
+      .eyebrow-btn:disabled {
+        opacity: 0.3;
+        cursor: not-allowed;
+      }
+
+      .download-block .btn {
+        flex-shrink: 0;
+        white-space: nowrap;
+      }
+
+      /* ── RESPONSIVE ── */
+      @media (max-width: 860px) {
+        nav {
+          top: 0.75rem;
+          gap: 1.25rem;
+          padding: 0.6rem 1rem;
+        }
+
+        .hero {
+          padding: 7rem 1.5rem 4rem;
+          text-align: left;
+        }
+        .hero-cta {
+          justify-content: flex-start;
+        }
+        .hero-desc {
+          margin-left: 0;
+        }
+
+        .section-wrap {
+          padding: 0 1.5rem;
+        }
+
+        .project-card-inner {
+          /* grid-template-columns: 1fr; */
+          display: flex;
+          flex-direction: column;
+        }
+
+        .project-card-meta {
+          border-right: none;
+          border-bottom: 0.5px solid var(--border);
+          padding: 2rem;
+          justify-content: start;
+        }
+
+        .project-card-content {
+          padding: 2rem;
+        }
+
+        .about-grid {
+          grid-template-columns: 1fr;
+          gap: 2.5rem;
+        }
+
+        .about-left {
+          position: static;
+        }
+        .about {
+          padding: 4rem 0;
+        }
+
+        .footer-inner {
+          flex-direction: column;
+          gap: 0.5rem;
+          text-align: center;
+        }
+
+        .download-block {
+          flex-direction: column;
+          align-items: center;
+        }
+        .download-block-title {
+          display: none;
+        }
+      }
+
+      @media (max-width: 400px) {
+        nav {
+          gap: 0.5rem;
+          padding: 0.5rem 0.75rem;
+        }
+        .nav-logo {
+          display: none;
+        }
+        .nav-links a {
+          font-size: 0.75rem;
+          padding: 0.35rem 0.6rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- NAV -->
+    <nav>
+      <a href="#" class="nav-logo">Brizane du Pisanie</a>
+      <ul class="nav-links">
+        <li><a href="#work">Work</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-inner">
+        <p
+          class="hero-badge"
+          style="
+            font-weight: semibold;
+            box-shadow: 2px 2px 5px rgb(146, 149, 149);
+          "
+        >
+          Available for new opportunities
+        </p>
+
+        <h1 class="hero-title">
+          Every great product starts with <em>understanding</em> people.
+        </h1>
+
+        <p class="hero-desc">
+          For me, design is about more than screens and interfaces. It's about
+          understanding how people think, what they need, and where they get
+          stuck. I enjoy transforming those insights into experiences that feel
+          natural, helping businesses achieve their goals while making life a
+          little easier for the people using their products.
+        </p>
+
+        <div class="hero-cta">
+          <a href="#work" class="btn btn-primary">View my work ↓</a>
+          <a href="#contact" class="btn btn-ghost">Get in touch</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CASE STUDIES -->
+    <section class="case-studies" id="work">
+      <div class="section-wrap">
+        <div class="section-eyebrow">
+          <span class="section-eyebrow-label">Case studies</span>
+          <div class="section-eyebrow-line"></div>
+          <div class="eyebrow-nav">
+            <button
+              class="eyebrow-btn"
+              id="prevBtnTop"
+              disabled
+              aria-label="Previous"
+            >
+              &#8249;
+            </button>
+            <span class="section-eyebrow-label" id="eyebrowCounter"
+              >01 — 03</span
+            >
+            <button class="eyebrow-btn" id="nextBtnTop" aria-label="Next">
+              &#8250;
+            </button>
+          </div>
+        </div>
+
+        <div class="carousel-wrap">
+          <div class="carousel-track">
+            <div class="carousel-slides" id="carouselSlides">
+              <!-- SLIDE 1 -->
+              <div class="carousel-slide">
+                <div class="project-card">
+                  <div class="project-card-inner">
+                    <div class="project-card-meta">
+                      <p class="project-num">01</p>
+                      <span class="project-tag">Conversion Optimisation</span>
+                      <h2 class="project-title">Single-Page Checkout</h2>
+                      <p class="project-summary">
+                        A multi-step checkout flow was creating friction and
+                        cart abandonment. This redesign collapsed the entire
+                        journey into a single, scannable page to shorten the
+                        path to the "Place order" button significantly.
+                      </p>
+                      <div class="project-meta-grid">
+                        <div>
+                          <p class="meta-item-label">My role</p>
+                          <p class="meta-item-value">Lead Product Designer</p>
+                        </div>
+                        <div>
+                          <p class="meta-item-label">Focus area</p>
+                          <p class="meta-item-value">UX Flow, Form Design</p>
+                        </div>
+                        <div>
+                          <p class="meta-item-label">Tools</p>
+                          <p class="meta-item-value">Figma</p>
+                        </div>
+                        <div>
+                          <p class="meta-item-label">Type</p>
+                          <p class="meta-item-value">
+                            E-commerce Web, Responsive Web
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="project-card-content">
+                      <div class="insight-block">
+                        <p class="insight-block-label">The problem</p>
+                        <p class="insight-block-text">
+                          The original checkout required users to navigate
+                          through multiple separate steps, making it feel longer
+                          than it needed to. With each additional step, there
+                          was a greater chance of users abandoning their
+                          purchase.<strong
+                            >See example video of the old version of this
+                            page:</strong
+                          >
+                        </p>
+                        <video
+                          class="project-video"
+                          controls
+                          poster="/assets/images/checkout-screenshot.webp"
+                          preload="metadata"
+                        >
+                          <source
+                            src="/assets/videos/checkout-screen-recording.mp4"
+                            type="video/mp4"
+                          />
+                        </video>
+                      </div>
+                      <div class="insight-block">
+                        <p class="insight-block-label">Design approach</p>
+                        <p class="insight-block-text">
+                          The checkout flow was redesigned into a single-page
+                          experience, bringing shipping, payment, and order
+                          review together in one place. This gives users a clear
+                          overview of the process, reduces unnecessary
+                          navigation, and makes completing a purchase feel
+                          faster and more straightforward.
+                        </p>
+                      </div>
+                      <div class="insight-block">
+                        <p class="insight-block-label">Expected outcome</p>
+                        <p class="insight-block-text">
+                          A faster, more straightforward checkout experience
+                          that reduces unnecessary steps and makes it easy for
+                          users to review their information before placing an
+                          order.
+                        </p>
+                      </div>
+                      <div
+                        class="download-block"
+                        style="justify-content: center"
+                      >
+                        <div>
+                          <p
+                            class="download-block-label"
+                            style="text-align: center; padding-bottom: 0.5rem"
+                          >
+                            See the solution
+                          </p>
+
+                          <a
+                            href="https://drive.google.com/file/d/1p8EYVHv_mFL7eA1CGEwtrOjEFRyRckxK/view?usp=sharing"
+                            class="btn btn-ghost"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            Download the Figma File ↗
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- SLIDE 2 -->
+              <div class="carousel-slide">
+                <div class="project-card">
+                  <div class="project-card-inner">
+                    <div class="project-card-meta">
+                      <p class="project-num">02</p>
+                      <span class="project-tag">UX Concept Design</span>
+                      <h2 class="project-title">Butter & Crumbs Mobile App</h2>
+                      <p class="project-summary">
+                        A concept mobile app created as part of the Google UX
+                        Design Professional Certificate to modernise the
+                        ordering experience for a local bakery. The project
+                        focused on replacing an inefficient phone-based ordering
+                        process with an intuitive digital solution that makes
+                        ordering simpler for customers while reducing pressure
+                        on staff.
+                      </p>
+
+                      <div class="project-meta-grid">
+                        <div>
+                          <p class="meta-item-label">My role</p>
+                          <p class="meta-item-value">UX/UI Designer</p>
+                        </div>
+
+                        <div>
+                          <p class="meta-item-label">Focus area</p>
+                          <p class="meta-item-value">
+                            UX Research, User Flows, Wireframing, UI Design &
+                            Prototyping
+                          </p>
+                        </div>
+
+                        <div>
+                          <p class="meta-item-label">Tools</p>
+                          <p class="meta-item-value">Figma</p>
+                        </div>
+
+                        <div>
+                          <p class="meta-item-label">Type</p>
+                          <p class="meta-item-value">Concept Mobile App</p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="project-card-content">
+                      <div class="insight-block">
+                        <p class="insight-block-label">The problem</p>
+                        <p class="insight-block-text">
+                          The bakery relied on phone calls to take customer
+                          orders. As order volumes increased, the process became
+                          difficult to manage, introduced a greater risk of
+                          human error, and took valuable time away from serving
+                          customers in-store.
+                          <strong
+                            >Example screens from the final concept:</strong
+                          >
+                        </p>
+
+                        <img
+                          class="project-video"
+                          src="assets/images/screens.webp"
+                          alt="Image of example screens from the final concept"
+                        />
+                      </div>
+
+                      <div class="insight-block">
+                        <p class="insight-block-label">Design approach</p>
+                        <p class="insight-block-text">
+                          I followed a user-centred design process, beginning
+                          with user research, personas, and user journeys before
+                          creating wireframes and interactive prototypes. The
+                          interface was designed to feel warm, familiar, and
+                          easy to navigate, allowing customers to browse
+                          products, customise orders, and schedule collection
+                          with minimal effort.
+                        </p>
+                        <br />
+                        <a
+                          href="https://docs.google.com/presentation/d/1GSDKDG0n0e1VdsWN58uoZoZYcgk2_3_UM611AV6wfdU/edit?usp=sharing"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          class="btn btn-ghost"
+                        >
+                          View User Personas ↗
+                        </a>
+                      </div>
+
+                      <div class="insight-block">
+                        <p class="insight-block-label">What I learned</p>
+                        <p class="insight-block-text">
+                          This project reinforced the importance of designing
+                          around real user needs rather than assumptions. It
+                          strengthened my understanding of UX research,
+                          information architecture, and translating user
+                          requirements into intuitive interfaces, while showing
+                          how thoughtful design can improve both customer and
+                          business experiences.
+                        </p>
+                      </div>
+
+                      <div
+                        class="download-block"
+                        style="justify-content: center"
+                      >
+                        <div>
+                          <p
+                            class="download-block-label"
+                            style="text-align: center; padding-bottom: 0.5rem"
+                          >
+                            See the solution
+                          </p>
+
+                          <a
+                            href="https://drive.google.com/file/d/19272EubhyRoTdK6W_gkEBGyxowzC56-S/view?usp=sharing"
+                            class="btn btn-ghost"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            Download the Figma File ↗
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- SLIDE 3 -->
+              <div class="carousel-slide">
+                <div class="project-card">
+                  <div class="project-card-inner">
+                    <div class="project-card-meta">
+                      <p class="project-num">03</p>
+                      <span class="project-tag">UX Redesign</span>
+                      <h2 class="project-title">How-to Videos Page Redesign</h2>
+                      <p class="project-summary">
+                        Users were struggling to find what they needed in a
+                        poorly structured video library with an endless scroll.
+                        This redesign focused on improving discoverability and
+                        reducing time-to-content through clearer information
+                        architecture and navigation patterns.
+                      </p>
+                      <div class="project-meta-grid">
+                        <div>
+                          <p class="meta-item-label">My role</p>
+                          <p class="meta-item-value">Lead Product Designer</p>
+                        </div>
+                        <div>
+                          <p class="meta-item-label">Focus area</p>
+                          <p class="meta-item-value">
+                            Information Architecture, Navigation, UI
+                          </p>
+                        </div>
+                        <div>
+                          <p class="meta-item-label">Tools</p>
+                          <p class="meta-item-value">Figma</p>
+                        </div>
+                        <div>
+                          <p class="meta-item-label">Type</p>
+                          <p class="meta-item-value">Responsive Web</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="project-card-content">
+                      <div class="insight-block">
+                        <p class="insight-block-label">The problem</p>
+                        <p class="insight-block-text">
+                          Users were unable to effectively navigate the original
+                          page, leading to drop-off before finding relevant help
+                          content and creating an unnecessary support
+                          burden.<strong
+                            >See example video of the old version of this
+                            page:</strong
+                          >
+                        </p>
+                        <video
+                          class="project-video"
+                          controls
+                          poster="/assets/images/how-to-videos-screenshot.webp"
+                          preload="metadata"
+                        >
+                          <source
+                            src="/assets/videos/how-to-videos-screen-recording.mp4"
+                            type="video/mp4"
+                          />
+                        </video>
+                      </div>
+                      <div class="insight-block">
+                        <p class="insight-block-label">Design approach</p>
+                        <p class="insight-block-text">
+                          Restructure the information architecture with
+                          categorised browsing to surface the most-needed
+                          content without overwhelming the user on first load.
+                        </p>
+                      </div>
+                      <div class="insight-block">
+                        <p class="insight-block-label">Expected outcome</p>
+                        <p class="insight-block-text">
+                          An easier-to-navigate how-to videos page that groups
+                          related content with clear categories, reducing
+                          cognitive load, and offer a direct path from question
+                          to answer.
+                        </p>
+                      </div>
+                      <div
+                        class="download-block"
+                        style="justify-content: center"
+                      >
+                        <div>
+                          <p
+                            class="download-block-label"
+                            style="text-align: center; padding-bottom: 0.5rem"
+                          >
+                            See the solution
+                          </p>
+
+                          <a
+                            href="https://drive.google.com/file/d/1tXTXD3bzMdCNJldX4L0BnrpH_S368ATO/view?usp=sharing"
+                            class="btn btn-ghost"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            Download the Figma File ↗
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- /carousel-slides -->
+          </div>
+          <!-- /carousel-track -->
+
+          <div class="carousel-controls">
+            <button
+              class="carousel-btn"
+              id="prevBtn"
+              disabled
+              aria-label="Previous"
+            >
+              &#8249;
+            </button>
+            <span class="carousel-counter" id="carouselCounter">1 / 3</span>
+            <button class="carousel-btn" id="nextBtn" aria-label="Next">
+              &#8250;
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      (function () {
+        const slides = document.getElementById("carouselSlides");
+        const counter = document.getElementById("carouselCounter");
+        const eyebrow = document.getElementById("eyebrowCounter");
+        const prevBtn = document.getElementById("prevBtn");
+        const nextBtn = document.getElementById("nextBtn");
+        const prevTop = document.getElementById("prevBtnTop");
+        const nextTop = document.getElementById("nextBtnTop");
+        const total = document.querySelectorAll(".carousel-slide").length;
+        let current = 0;
+
+        function pad(n) {
+          return String(n).padStart(2, "0");
+        }
+
+        function goTo(i) {
+          current = i;
+          slides.style.transform = `translateX(-${current * 100}%)`;
+          counter.textContent = `${current + 1} / ${total}`;
+          eyebrow.textContent = `${pad(current + 1)} — ${pad(total)}`;
+          [prevBtn, prevTop].forEach((b) => (b.disabled = current === 0));
+          [nextBtn, nextTop].forEach(
+            (b) => (b.disabled = current === total - 1),
+          );
+        }
+
+        prevBtn.addEventListener("click", () => goTo(Math.max(current - 1, 0)));
+        nextBtn.addEventListener("click", () =>
+          goTo(Math.min(current + 1, total - 1)),
+        );
+        prevTop.addEventListener("click", () => goTo(Math.max(current - 1, 0)));
+        nextTop.addEventListener("click", () =>
+          goTo(Math.min(current + 1, total - 1)),
+        );
+
+        document.addEventListener("keydown", (e) => {
+          if (e.key === "ArrowLeft") goTo(Math.max(current - 1, 0));
+          if (e.key === "ArrowRight") goTo(Math.min(current + 1, total - 1));
+        });
+
+        let startX = 0;
+        slides.addEventListener(
+          "touchstart",
+          (e) => {
+            startX = e.touches[0].clientX;
+          },
+          { passive: true },
+        );
+        slides.addEventListener("touchend", (e) => {
+          const diff = startX - e.changedTouches[0].clientX;
+          if (Math.abs(diff) > 50)
+            goTo(
+              diff > 0
+                ? Math.min(current + 1, total - 1)
+                : Math.max(current - 1, 0),
+            );
+        });
+      })();
+    </script>
+
+    <!-- ABOUT -->
+    <section class="about" id="about">
+      <div class="section-wrap">
+        <div class="about-grid">
+          <div class="about-left">
+            <h2 class="about-heading">More about<br /><em>me</em></h2>
+          </div>
+          <div>
+            <p class="about-body">
+              I'm Brizane, a Junior Product Designer (UI/UX) who started my
+              career in front-end web development. For four years, I worked with
+              HTML, CSS, JavaScript, React.js, and Tailwind CSS, building the
+              interfaces that users interacted with every day. Over time, I
+              found myself becoming more interested in why those interfaces were
+              designed the way they were and how small design decisions could
+              shape the overall user experience. That interest led me to
+              transition into UI/UX design. Today, I combine my technical
+              background with a user-centred design approach to create digital
+              experiences that balance user needs, business goals, and technical
+              requirements.
+            </p>
+            <p class="about-body">
+              My development experience helps me communicate effectively with
+              engineering teams, understand implementation constraints, and
+              design solutions that work beyond the mockup stage. I enjoy
+              solving complex problems through thoughtful design, whether
+              improving user journeys, refining navigation, or simplifying
+              complex interactions.
+            </p>
+
+            <p class="insight-block-label">Skills:</p>
+
+            <div class="skills-list">
+              <span class="skill-tag">Agile Workflow</span>
+              <span class="skill-tag">Figma</span>
+              <span class="skill-tag">Wireframing</span>
+              <span class="skill-tag">User-centered Design</span>
+              <span class="skill-tag">Prototyping</span>
+              <span class="skill-tag">Responsive Web Design</span>
+              <span class="skill-tag">HTML &amp; CSS</span>
+              <span class="skill-tag">JavaScript</span>
+              <span class="skill-tag">React.js</span>
+              <span class="skill-tag">Next.js</span>
+              <span class="skill-tag">Tailwind CSS</span>
+              <span class="skill-tag">Design–Dev Handoff</span>
+              <span class="skill-tag">Cross-functional Collaboration</span>
+            </div>
+
+            <div class="contact-row" id="contact">
+              <a href="mailto:brizane@gmail.com" class="btn btn-primary"
+                >brizane@gmail.com</a
+              >
+              <a
+                target="_blank"
+                href="https://www.linkedin.com/in/brizane-du-pisanie-377339104/"
+                class="btn btn-ghost"
+                >LinkedIn ↗</a
+              >
+              <a
+                target="_blank"
+                href="https://github.com/brieC"
+                class="btn btn-ghost"
+                >GitHub ↗</a
+              >
+              <a
+                target="_blank"
+                href="/assets/docs/cv-brizane-du-pisanie.pdf"
+                class="btn btn-ghost"
+                >CV ↗</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer-inner">
+        <p>Brizane du Pisanie — Product Designer &amp; Front-end Developer</p>
+        <p>© 2026</p>
+      </div>
+    </footer>
+  </body>
+</html>
